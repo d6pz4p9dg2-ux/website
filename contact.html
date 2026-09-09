@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact &middot; Sam Bysh</title>
+<meta name="description" content="Get in touch with Sam Bysh.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+  <div class="sidebar">
+    <div class="photo"><img src="assets/photo-small.jpg" alt="Sam Bysh" onerror="this.parentNode.textContent='photo'"></div>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="cv.html">CV</a>
+      <a href="tutoring.html">Tutoring</a>
+      <a href="contact.html" class="current">Contact</a>
+    </nav>
+  </div>
+
+  <div class="content">
+    <h1>Contact</h1>
+    <div class="eyebrow">Email, or use the form below</div>
+
+    <div class="contact-block serif">
+      Email: <a id="email-link" href="#">(enable JavaScript to see this, or use the form)</a>
+    </div>
+
+    <!--
+      TODO (Sam): sign up for a free account at web3forms.com, create an access key for this
+      domain, and paste it in place of YOUR_ACCESS_KEY_HERE below. Submissions then arrive
+      straight to your inbox, no backend required.
+    -->
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+      <input type="hidden" name="subject" value="New message from samwebsite.com contact form">
+
+      <!-- honeypot field: real visitors never see or fill this in; bots often do -->
+      <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off">
+
+      <label>
+        Name
+        <input type="text" name="name" required>
+      </label>
+
+      <label>
+        Email
+        <input type="email" name="email" required>
+      </label>
+
+      <label>
+        Message
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+
+      <button type="submit">Send</button>
+    </form>
+
+    <footer class="sitefoot">Chicago, IL</footer>
+  </div>
+
+</div>
+
+<script>
+  // Very light obfuscation against the simplest scrapers: assembled at runtime rather
+  // than sitting in the page source as a plain mailto link.
+  (function () {
+    var user = "sam.bysh";
+    var domain = "hotmail.co.uk";
+    var link = document.getElementById("email-link");
+    if (link) {
+      link.href = "mailto:" + user + "@" + domain;
+      link.textContent = user + "@" + domain;
+    }
+  })();
+</script>
+</body>
+</html>
