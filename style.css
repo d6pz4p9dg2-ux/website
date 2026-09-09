@@ -49,6 +49,12 @@ a:hover {
   padding: 48px 32px 80px;
 }
 
+@media (min-width: 1100px) {
+  .page {
+    max-width: 1160px;
+  }
+}
+
 /* ---------------- sidebar ---------------- */
 
 .sidebar {
@@ -170,6 +176,13 @@ a:hover {
   color: var(--sub);
   font-size: 10px;
   text-transform: uppercase;
+}
+
+@media (min-width: 1100px) {
+  .bio-photo {
+    width: 260px;
+    height: 320px;
+  }
 }
 
 .bio-photo img {
