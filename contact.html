@@ -77,12 +77,12 @@
   // Very light obfuscation against the simplest scrapers: assembled at runtime rather
   // than sitting in the page source as a plain mailto link.
   (function () {
-    var user = "sam.bysh";
-    var domain = "hotmail.co.uk";
+    var user = "sysh";
+    var domain = "uic.edu";
     var link = document.getElementById("email-link");
     if (link) {
       link.href = "mailto:" + user + "@" + domain;
-      link.textContent = user + "@" + domain;
+      link.textContent = user + "@" + domain +" (no time wasters)";
     }
   })();
 
