@@ -27,7 +27,7 @@
     <div class="eyebrow">Email, or use the form below</div>
 
     <div class="contact-block serif">
-      Email: <a id="email-link" href="#">(enable JavaScript to see this, or use the form)</a>
+      Email: <a id="email-link" href="#">(enable JavaScript to see this, or use the form)</a> (no time wasters)
     </div>
 
     <!--
@@ -77,12 +77,12 @@
   // Very light obfuscation against the simplest scrapers: assembled at runtime rather
   // than sitting in the page source as a plain mailto link.
   (function () {
-    var user = "sysh";
+    var user = "sbysh";
     var domain = "uic.edu";
     var link = document.getElementById("email-link");
     if (link) {
       link.href = "mailto:" + user + "@" + domain;
-      link.textContent = user + "@" + domain +" (no time wasters)";
+      link.textContent = user + "@" + domain;
     }
   })();
 
