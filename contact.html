@@ -34,10 +34,16 @@
       TODO (Sam): sign up for a free account at web3forms.com, create an access key for this
       domain, and paste it in place of YOUR_ACCESS_KEY_HERE below. Submissions then arrive
       straight to your inbox, no backend required.
+
+      Note: Web3Forms sends a verification email the first time a key is used; until you
+      click the link in that email, submissions may not actually arrive even though the
+      form appears to work. Worth checking your inbox (and spam folder) after your first
+      real test.
     -->
-    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="54284c02-d7f0-4687-a0ac-036ecee884e4">
+    <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
       <input type="hidden" name="subject" value="New message from sambysh.co.uk contact form">
+      <input type="hidden" name="redirect" value="false">
 
       <!-- honeypot field: real visitors never see or fill this in; bots often do -->
       <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off">
@@ -58,9 +64,11 @@
       </label>
 
       <button type="submit">Send</button>
+
+      <p id="form-status" role="status" aria-live="polite"></p>
     </form>
 
-    <footer class="sitefoot">Chicago, IL</footer>
+    <footer class="sitefoot">Last updated September 2026</footer>
   </div>
 
 </div>
@@ -76,6 +84,44 @@
       link.href = "mailto:" + user + "@" + domain;
       link.textContent = user + "@" + domain;
     }
+  })();
+
+  // Submit the form with fetch so we can show a message in place, rather than sending
+  // the visitor to web3forms.com's own confirmation page. If JavaScript is unavailable,
+  // the form still works as a plain POST (Web3Forms just shows their default page instead).
+  (function () {
+    var form = document.getElementById("contact-form");
+    var status = document.getElementById("form-status");
+    if (!form || !status) return;
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      status.textContent = "Sending…";
+      status.className = "";
+
+      var data = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      })
+        .then(function (response) { return response.json(); })
+        .then(function (result) {
+          if (result.success) {
+            status.textContent = "Message sent, thank you. I'll get back to you soon.";
+            status.className = "form-status-ok";
+            form.reset();
+          } else {
+            status.textContent = "Something went wrong sending that. Please try again, or email me directly.";
+            status.className = "form-status-error";
+          }
+        })
+        .catch(function () {
+          status.textContent = "Something went wrong sending that. Please try again, or email me directly.";
+          status.className = "form-status-error";
+        });
+    });
   })();
 </script>
 </body>

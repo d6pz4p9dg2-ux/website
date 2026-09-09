@@ -405,6 +405,20 @@ form.contact-form button:hover {
   top: -9999px;
 }
 
+#form-status {
+  font-size: 14px;
+  min-height: 1.2em;
+  margin: 4px 0 0;
+}
+
+#form-status.form-status-ok {
+  color: var(--accent);
+}
+
+#form-status.form-status-error {
+  color: #a8542f;
+}
+
 footer.sitefoot {
   margin-top: 56px;
   font-size: 12px;
